@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
@@ -36,7 +35,7 @@ class UserServiceImplTest {
         List<UserModel> userModelList = new ArrayList<>();
         userModelList.add(userModel);
 
-        when(userRepository.findAll()).thenReturn(userModelList);
+        Mockito.when(userRepository.findAll()).thenReturn(userModelList);
 
         // EXECUÇÃO: chama o metodo que esta sendo testatdo (findAll() no service)
         List<UserModel> userModelList1 = userServiceImpl.findAll();
