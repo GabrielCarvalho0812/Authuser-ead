@@ -27,7 +27,7 @@ class UserServiceImplTest {
 
     @Test
     void findAll() {
-        //SETUP: Prepara o ambiente de teste
+        //ARRANGE (preparação)
         UserModel userModel = new UserModel();
         userModel.setUserId(UUID.randomUUID());
         userModel.setUsername("username");
@@ -37,31 +37,32 @@ class UserServiceImplTest {
 
         Mockito.when(userRepository.findAll()).thenReturn(userModelList);
 
+        //ACT (ação)
         // EXECUÇÃO: chama o metodo que esta sendo testatdo (findAll() no service)
         List<UserModel> userModelList1 = userServiceImpl.findAll();
 
 
+        //ASSERT (afirmação)
         // VERIFICAÇÃO: Aqui verificamos se o resultado do metodo é o esperado
         Assertions.assertEquals(userModelList, userModelList1);
         Assertions.assertEquals(userModelList.size(), userModelList1.size());
-        Mockito.
-                verify(userRepository, Mockito.times(1)).findAll();
-        Mockito.
-                verifyNoMoreInteractions(userRepository);
+        Mockito.verify(userRepository, Mockito.times(1)).findAll();
+        Mockito.verifyNoMoreInteractions(userRepository);
     }
 
     @Test
     void deveRetornarFindById(){
 
-
+        // ARRANGE
         UUID userId = UUID.randomUUID();
         UserModel userModel = new UserModel();
         userModel.setUserId(userId);
 
         Mockito.when(userRepository.findById(userId)).thenReturn(Optional.of(userModel));
-
+        //ACT
         userServiceImpl.findById(userId);
 
+        //ASSERT
         Mockito.
                 verify(userRepository, Mockito.times(1)).findById(userId);
         Mockito.
