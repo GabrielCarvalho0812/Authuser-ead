@@ -25,8 +25,10 @@ O microsserviço **AuthUser** é responsável por gerenciar a autenticação, co
 
 ## Endpoints Principais
 
-- `POST /login`: Realiza a autenticação de um usuário com email e senha.
-- `POST /register`: Cria um novo usuário na plataforma.
-- `GET /user/{id}`: Obtém as informações de um usuário específico.
-- `PUT /user/{id}`: Atualiza os dados de um usuário específico.
-- `DELETE /user/{id}`: Exclui uma conta de usuário
+- `POST SING UP`: Realiza a autenticação Criando um novo usuário na plataforma
+- `GET ALL USERS`: Obtém as informações de um usuários.
+- `GET ONE USERS {id}`: Obtém as informações de um usuário específico.
+- `PUT UPDATE USER`: Atualiza os dados de um usuário específico.
+- `PUT PASSWORD`: Atualiza a Senha de um Usuário.
+- `PUT UPDATE IMAGE`: Atualiza a imagem de um Usuário.
+- `DELETE USER`: Exclui os dados da conta de um Usuario.
