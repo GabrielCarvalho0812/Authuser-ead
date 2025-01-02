@@ -13,12 +13,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
+//@CrossOrigin(origins = "*", maxAge = 3600) //nivel de classe para ficar como exemplo
 public class UserController {
 
     //ponto de injeção
