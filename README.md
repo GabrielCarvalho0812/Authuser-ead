@@ -10,6 +10,7 @@ O microsserviço **AuthUser** é responsável por gerenciar a autenticação, co
 - **Spring Boot Starter Web**: Dependência que habilita a criação de serviços web RESTful, permitindo a comunicação entre o microsserviço e o cliente.
 - **Spring Boot Starter Test**: Dependência usada para realizar testes automatizados no microsserviço, garantindo a qualidade do código.
 - **Spring Boot Starter Validation**: Usado para validação de dados de entrada, como o cadastro de usuários, garantindo que as informações fornecidas estejam corretas.
+- **Spring-boot-starter-hateoas**: Dependência para incluir links dinâmicos nas respostas, fornecendo aos clientes uma forma de navegar pela API de maneira mais flexível e desacoplada.
 
 
 ## Funcionalidades
@@ -25,10 +26,10 @@ O microsserviço **AuthUser** é responsável por gerenciar a autenticação, co
 
 ## Endpoints Principais
 
-- `POST SING UP`: Realiza a autenticação Criando um novo usuário na plataforma
-- `GET ALL USERS`: Obtém as informações de um usuários.
-- `GET ONE USERS {id}`: Obtém as informações de um usuário específico.
-- `PUT UPDATE USER`: Atualiza os dados de um usuário específico.
-- `PUT PASSWORD`: Atualiza a Senha de um Usuário.
-- `PUT UPDATE IMAGE`: Atualiza a imagem de um Usuário.
-- `DELETE USER`: Exclui os dados da conta de um Usuario.
+- `POST/ING UP`: Realiza a autenticação Criando um novo usuário na plataforma
+- `GET/ALL USERS`: Obtém as informações de um usuários.
+- `GET/ONE USERS {id}`: Obtém as informações de um usuário específico.
+- `PUT/UPDATE USER`: Atualiza os dados de um usuário específico.
+- `PUT/PASSWORD`: Atualiza a Senha de um Usuário.
+- `PUT/UPDATE IMAGE`: Atualiza a imagem de um Usuário.
+- `DELETE/USER`: Exclui a conta de um Usuario.
