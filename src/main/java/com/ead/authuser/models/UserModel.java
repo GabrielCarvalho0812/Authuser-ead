@@ -64,7 +64,7 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<UserCourseModel> userCourses;
+    private Set<UserCourseModel> usersCourses;
 
 
 
@@ -156,11 +156,11 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
         this.lastUpdateDate = lastUpdateDate;
     }
 
-    public Set<UserCourseModel> getUserCourses() {
-        return userCourses;
+    public Set<UserCourseModel> getUsersCourses() {
+        return usersCourses;
     }
 
-    public void setUserCourses(Set<UserCourseModel> userCourses) {
-        this.userCourses = userCourses;
+    public void setUsersCourses(Set<UserCourseModel> userCourses) {
+        this.usersCourses = userCourses;
     }
 }
