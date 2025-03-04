@@ -13,4 +13,6 @@ public class UserCourseServiceImpl implements UserCourseService {
     public UserCourseServiceImpl(UserCourseRepository userCourseRepository) {
         this.userCourseRepository = userCourseRepository;
     }
+
+
 }

@@ -24,6 +24,7 @@ public class UserCourseController {
     }
 
 
+    //traga todos courses relacionados a um determinado usuario
     @GetMapping("/users/{userId}/courses")
     public ResponseEntity<Page<CourseRecordDto>> getAllCoursesByUser(@PageableDefault(sort = "courseId", direction = Sort.Direction.ASC) Pageable pageable,
                                                                      @PathVariable(value = "userId") UUID userId){
