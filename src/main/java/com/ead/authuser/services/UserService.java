@@ -1,7 +1,9 @@
 package com.ead.authuser.services;
 
+import com.ead.authuser.dtos.UserCourseRecordDto;
 import com.ead.authuser.dtos.UserRecordDto;
 import com.ead.authuser.models.UserModel;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -30,4 +32,5 @@ public interface UserService {
     UserModel updateImage(UserRecordDto userRecordDto, UserModel userModel);
 
     Page<UserModel> findAll(Specification<UserModel> spec, Pageable pageable);
+
 }

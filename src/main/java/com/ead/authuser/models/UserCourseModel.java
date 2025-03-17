@@ -12,6 +12,14 @@ import java.util.UUID;
 public class UserCourseModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    public UserCourseModel(UUID id, UUID courseId, UserModel user) {
+        this.id = id;
+        this.courseId = courseId;
+        this.user = user;
+    }
+
+    public UserCourseModel() {}
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
