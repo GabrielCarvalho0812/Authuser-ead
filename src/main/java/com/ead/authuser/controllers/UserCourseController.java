@@ -45,14 +45,23 @@ public class UserCourseController {
                                                                @RequestBody @Valid UserCourseRecordDto userCourseRecordDto, Pageable pageable){
         Optional<UserModel> userModelOptional = userService.findById(userId);
         if (userCourseService.existsByUserAndCourseId(userModelOptional.get(), userCourseRecordDto.courseId())){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Error: Subscription already exists");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Error: Subscription already exists.");
         }
         //oque precisa salvar na base é um UserCourseModel
         UserCourseModel userCourseModel =
                 userCourseService.save(userModelOptional.get().convertToUserCourseModel(userCourseRecordDto.courseId()));
 
         return ResponseEntity.status(HttpStatus.CREATED).body(userCourseModel);
+    }
 
+    @DeleteMapping("/users/courses/{courseId}")
+    public ResponseEntity<Object> deleteUserByCourse(@PathVariable(value = "courseId") UUID courseId){
+        //verificar se existe essa associação entre os microsservices para ser deletada
+        if (!userCourseService.existsByCourseId(courseId)){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
+        }
+        userCourseService.deleteAllByCourseId(courseId);
+        return ResponseEntity.status(HttpStatus.OK).body("UserCourse deleted successfully.");
     }
 
 
