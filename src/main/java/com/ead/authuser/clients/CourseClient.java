@@ -31,6 +31,7 @@ public class CourseClient {
     public Page<CourseRecordDto> getAllCoursesByUser(UUID userId, Pageable pageable) {
         String url = baseUrlCourse + "/courses?userId/" + userId + "/&pageable=" + pageable.getPageNumber() + "&size=" + pageable.getPageSize()
                 + pageable.getPageSize() + "&sort=" + pageable.getSort().toString().replaceAll(": ", ",");
+            logger.debug("Resquest Url: {}", url);
 
         try {
             //buscar uma listagem de recursos no outro microsservice
@@ -43,8 +44,26 @@ public class CourseClient {
         }catch (RestClientException e){
             logger.error("Error Request RestClient with cause: {} ", e.getMessage());
             throw new RuntimeException("Error Request RestClient", e);
-
         }
+    }
+
+
+    public void deleteUserCourseInCourse(UUID userId){
+        String url = baseUrlCourse + "/courses/users/" + userId;
+        logger.debug("Resquest Url: {}", url);
+
+        try {
+            restClient.delete()
+                    .uri(url)
+                    .retrieve()
+                    .toBodilessEntity();
+        }catch (RestClientException e){
+            logger.error("Error Request DELETE RestClient with cause: {} ", e.getMessage());
+            throw new RuntimeException("Error Request DELETE RestClient", e);
+        }
+
+
+
     }
 
 
