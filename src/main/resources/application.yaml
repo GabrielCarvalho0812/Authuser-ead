@@ -4,26 +4,30 @@ server:
     context-path: '/ead-authuser/'
 
 spring:
+  application:
+    name: ead-authuser-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/ead-authuser
+    url:  jdbc:postgresql://localhost:5432/ead-authuser
     username: postgres
     password: 1234567
   jpa:
     hibernate:
       ddl-auto: update
-      dialect: org.hibernate.dialect.PostgresSQLDialect
+      dialect: org.hibernate.dialect.PostgreSQLDialect
       jdbc:
         lob.non-contextual-creation: true
     properties:
       hibernate:
         show_sql: true
+  output:
+    ansi:
+      enabled: Always
 
 
 ead:
   api:
     url:
-      course: 'http://localhost:8082/ead-course'
-
+      course: 'http://ead-course-service/ead-course'
 
 logging:
   level:
@@ -32,4 +36,10 @@ logging:
     org.springframework.web: DEBUG
     org.hibernate: INFO
 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: 'http://localhost:8761/eureka'
+  instance:
+    hostname: localhost
 
