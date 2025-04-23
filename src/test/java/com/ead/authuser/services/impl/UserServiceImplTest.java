@@ -1,7 +1,6 @@
 package com.ead.authuser.services.impl;
 
 import com.ead.authuser.models.UserModel;
-import com.ead.authuser.repositories.UserCourseRepository;
 import com.ead.authuser.repositories.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,8 +24,6 @@ class UserServiceImplTest {
     @Mock
     UserRepository userRepository;
 
-    @Mock
-    UserCourseRepository userCourseRepository;
 
     @Test
     void findAll() {

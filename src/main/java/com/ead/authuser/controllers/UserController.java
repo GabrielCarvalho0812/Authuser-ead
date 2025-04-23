@@ -37,11 +37,8 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<Page<UserModel>> getAllUsers(SpecificationTemplate.UserSpec spec,
-                                                       Pageable pageable,
-                                                       @RequestParam(required = false) UUID courseId) {
-        Page<UserModel> userModelPage = (courseId != null)
-                ? userService.findAll(SpecificationTemplate.userCourseId(courseId).and(spec), pageable)
-                : userService.findAll(spec, pageable);
+                                                       Pageable pageable) {
+        Page<UserModel> userModelPage = userService.findAll(spec, pageable);
         if (!userModelPage.isEmpty()){ // ! verificar se há negação (se ela nao estiver vazia)
             for (UserModel user : userModelPage.toList()){
                 user.add(linkTo(methodOn(UserController.class).getOneUser(user.getUserId())).withSelfRel());
