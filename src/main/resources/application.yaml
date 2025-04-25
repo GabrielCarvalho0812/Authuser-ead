@@ -1,46 +1,52 @@
 server:
-  port: 8087
+  port: 8087  # Porta na qual o serviço será executado (localhost:8087)
   servlet:
-    context-path: '/ead-authuser/'
+    context-path: '/ead-authuser/'  # Caminho base da aplicação; ex: localhost:8087/ead-authuser/
 
 spring:
   application:
-    name: ead-authuser-service
+    name: ead-authuser-service  # Nome da aplicação registrado no Eureka (importante para descoberta de serviços)
   datasource:
-    url:  jdbc:postgresql://localhost:5432/ead-authuser-v2
-    username: postgres
-    password: 1234567
+    url:  jdbc:postgresql://localhost:5432/ead-authuser-v2  # URL de conexão com o banco PostgreSQL
+    username: postgres   # Usuário do banco de dados
+    password: 1234567  # Senha do banco de dados (em produção, use variáveis de ambiente ou Vault)
   jpa:
     hibernate:
-      ddl-auto: update
-    show_sql: true
+      ddl-auto: update   # Atualiza automaticamente o schema do banco de dados conforme as entidades (útil em dev)
+    show_sql: true   # Mostra as queries SQL executadas no console (bom para debug)
     properties:
       hibernate:
         jdbc:
           lob:
-            non-contextual-creation: true
+            non-contextual-creation: true  # Corrige um problema com LOBs (Large Objects) no Hibernate/PostgreSQL
 
   output:
     ansi:
-      enabled: Always
+      enabled: Always   # Ativa cores no log do terminal para facilitar leitura (ex: logs coloridos)
+
+  rabbitmq:
+    addresses: amqps://fgiejfrc:sgtzUT7AQB_VS5EhOD8bjJeJdA1DruFt@leopard.lmq.cloudamqp.com/fgiejfrc
+    # Endereço de conexão ao RabbitMQ hospedado na CloudAMQP (com protocolo seguro amqps)
+
 
 
 ead:
   api:
     url:
       course: 'http://ead-course-service/ead-course'
+      # URL base do microserviço de curso; usado para fazer chamadas REST entre microserviços
 
 logging:
   level:
     com.ead: TRACE
-    root: INFO
-    org.springframework.web: DEBUG
-    org.hibernate: INFO
+    root: INFO   # Nível de log padrão para o restante do sistema
+    org.springframework.web: DEBUG  # Log detalhado para requisições web do Spring (controladores, etc)
+    org.hibernate: INFO   # Informações sobre execução do Hibernate
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: 'http://localhost:8761/eureka'
+      defaultZone: 'http://localhost:8761/eureka'   # URL do servidor Eureka (descoberta de serviços)
   instance:
-    hostname: localhost
+    hostname: localhost   # Nome do host onde o serviço está rodando (útil se rodar em Docker ou em rede)
 
