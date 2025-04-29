@@ -25,7 +25,7 @@ spring:
       enabled: Always   # Ativa cores no log do terminal para facilitar leitura (ex: logs coloridos)
 
   rabbitmq:
-    addresses: amqps://fgiejfrc:sgtzUT7AQB_VS5EhOD8bjJeJdA1DruFt@leopard.lmq.cloudamqp.com/fgiejfrc
+    addresses: amqps://fgiejfrc:EeDBSevNNH-LnT-XqwTkT2IgOgOmc0Kd@leopard.lmq.cloudamqp.com/fgiejfrc
     # Endereço de conexão ao RabbitMQ hospedado na CloudAMQP (com protocolo seguro amqps)
 
 
