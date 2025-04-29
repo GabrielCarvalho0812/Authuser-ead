@@ -35,6 +35,10 @@ ead:
     url:
       course: 'http://ead-course-service/ead-course'
       # URL base do microserviço de curso; usado para fazer chamadas REST entre microserviços
+  broker:
+    exchange:
+      userEvent: ead.userevent   # Nome do "exchange" que será usado para publicar eventos relacionados ao usuário (ex: criação, atualização)
+
 
 logging:
   level:
