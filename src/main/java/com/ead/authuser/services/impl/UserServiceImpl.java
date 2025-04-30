@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(UserModel userModel) {
         userRepository.delete(userModel);
+        userEventPublisher.publisherUserEvent(userModel.convertToUserEventDto(ActionType.DELETE));
     }
 
     @Transactional
@@ -80,13 +81,16 @@ public class UserServiceImpl implements UserService {
         return userRepository.existsByEmail(email);
     }
 
+    @Transactional
     @Override
     public UserModel updateUser(UserRecordDto userRecordDto, UserModel userModel) {
         userModel.setFullName(userRecordDto.fullName());  //setando o novo fullName
         userModel.setPhoneNumber(userRecordDto.phoneNumber()); //setando o novo PhoneNumber
         userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
         //lembrando de atualizar a data de ultima atualização desse usuario
-        return userRepository.save(userModel);
+        userRepository.save(userModel);
+        userEventPublisher.publisherUserEvent(userModel.convertToUserEventDto(ActionType.UPDATE));
+        return userModel;
     }
 
     @Override
@@ -100,7 +104,9 @@ public class UserServiceImpl implements UserService {
     public UserModel updateImage(UserRecordDto userRecordDto, UserModel userModel) {
         userModel.setImageUrl(userRecordDto.imageUrl());
         userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
-        return userRepository.save(userModel);
+        userEventPublisher.publisherUserEvent(userModel.convertToUserEventDto(ActionType.UPDATE));
+        userRepository.save(userModel);
+        return userModel;
     }
 
     @Override
@@ -108,11 +114,14 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll(spec, pageable);
     }
 
+    @Transactional
     @Override
     public UserModel registerInstructor(UserModel userModel) {
         userModel.setUserType(UserType.INSTRUCTOR);
         userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
-        return userRepository.save(userModel);
+        userEventPublisher.publisherUserEvent(userModel.convertToUserEventDto(ActionType.UPDATE));
+        userRepository.save(userModel);
+        return userModel;
     }
 
 
