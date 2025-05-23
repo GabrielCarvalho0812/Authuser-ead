@@ -54,3 +54,14 @@ eureka:
   instance:
     hostname: localhost   # Nome do host onde o serviço está rodando (útil se rodar em Docker ou em rede)
 
+
+
+#Um módulo da biblioteca Resilience4j que lida com tentativas automáticas (retries) de chamadas que falham.
+resilience4j:
+  retry:
+    instances:
+      retryInstance: # Nome da instância de retry (você pode usar em métodos específicos)
+        max-attempts: 3  # Número máximo de tentativas (inclui a tentativa inicial + 2 retries)
+        wait-duration: 5s   # Tempo de espera entre uma tentativa e outra (5 segundos)
+
+
