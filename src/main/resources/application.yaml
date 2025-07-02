@@ -76,4 +76,3 @@ resilience4j:
         wait-duration: 5s   # Tempo de espera entre uma tentativa e outra (5 segundos)
 
 
-
